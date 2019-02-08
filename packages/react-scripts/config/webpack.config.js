@@ -304,7 +304,7 @@ module.exports = function(webpackEnv) {
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
-          test: /\.(js|mjs|jsx)$/,
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
           enforce: 'pre',
           use: [
             {
@@ -317,7 +317,7 @@ module.exports = function(webpackEnv) {
                   settings: { react: { version: '999.999.999' } },
                 },
                 ignore: false,
-                useEslintrc: false,
+                // useEslintrc: false,
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),

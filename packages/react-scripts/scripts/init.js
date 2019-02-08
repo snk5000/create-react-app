@@ -102,9 +102,11 @@ module.exports = function(
   };
 
   // Setup the eslint config
-  appPackage.eslintConfig = {
-    extends: 'react-app',
-  };
+  // removed (using .eslintrc.json)
+  // appPackage.eslintConfig = {
+  //   extends: 'react-app',
+  //   parser: '@typescript-eslint/parser'
+  // };
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;

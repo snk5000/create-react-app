@@ -302,9 +302,20 @@ module.exports = function(webpackEnv) {
         { parser: { requireEnsure: false } },
 
         // First, run the linter.
+        // TS linter
+        {
+          test: /\.(ts|tsx)$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'tslint-loader',
+            }
+          ]
+        },
+        // JS linter
         // It's important to do this before Babel processes the JS.
         {
-          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          test: /\.(js|mjs|jsx)$/,
           enforce: 'pre',
           use: [
             {

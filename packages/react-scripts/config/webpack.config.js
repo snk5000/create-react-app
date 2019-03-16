@@ -302,6 +302,17 @@ module.exports = function(webpackEnv) {
         { parser: { requireEnsure: false } },
 
         // First, run the linter.
+        // TS linter
+        {
+          test: /\.(ts|tsx)$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'tslint-loader',
+            }
+          ]
+        },
+        // JS linter
         // It's important to do this before Babel processes the JS.
         {
           test: /\.(js|mjs|jsx)$/,
@@ -316,7 +327,7 @@ module.exports = function(webpackEnv) {
                   extends: [require.resolve('eslint-config-react-app')],
                 },
                 ignore: false,
-                useEslintrc: false,
+                // useEslintrc: false,
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),

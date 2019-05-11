@@ -1,12 +1,8 @@
 {
-  "name": "react-scripts",
-  "version": "3.0.1",
+  "name": "@snk5000/react-scripts",
+  "version": "3.0.101",
   "description": "Configuration and scripts for Create React App.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
-    "directory": "packages/react-scripts"
-  },
+  "repository": "snk5000/create-react-app",
   "license": "MIT",
   "engines": {
     "node": ">=8.10"
@@ -75,6 +71,9 @@
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.3",
     "ts-pnp": "1.1.2",
+    "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-loader": "^3.5.4",
     "url-loader": "1.1.2",
     "webpack": "4.29.6",
     "webpack-dev-server": "3.2.1",

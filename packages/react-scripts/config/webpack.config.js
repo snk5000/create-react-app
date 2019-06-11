@@ -638,6 +638,7 @@ module.exports = function(webpackEnv) {
             // public/ and not a SPA route
             new RegExp('/[^/]+\\.[^/]+$'),
           ],
+          globPatterns: ['**/*.{json}']
         }),
       // TypeScript type checking
       useTypeScript &&

@@ -38,6 +38,9 @@ const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -534,6 +537,13 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      new CleanWebpackPlugin(),
+      new CopyPlugin([
+        { from: paths.appPublic },
+      ],{
+        ignore: paths.appHtml
+      }),
+
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -638,7 +648,6 @@ module.exports = function(webpackEnv) {
             // public/ and not a SPA route
             new RegExp('/[^/]+\\.[^/]+$'),
           ],
-          globPatterns: ['**/*.{json}']
         }),
       // TypeScript type checking
       useTypeScript &&

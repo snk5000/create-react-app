@@ -74,9 +74,9 @@ checkBrowsers(paths.appPath, isInteractive)
   .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.appBuild);
+    // fs.emptyDirSync(paths.appBuild); // REMOVED because of using clean-webpack-plugin
     // Merge with the public folder
-    copyPublicFolder();
+    //copyPublicFolder(); // REMOVED because of using copy-webpack-plugin
     // Start the webpack build
     return build(previousFileSizes);
   })

@@ -40,6 +40,10 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
+// snk5000 - this is a fix of paths which are not working in sw plugin
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -339,9 +343,20 @@ module.exports = function(webpackEnv) {
         { parser: { requireEnsure: false } },
 
         // First, run the linter.
+        // TS linter
+        {
+          test: /\.(ts|tsx)$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'tslint-loader',
+            }
+          ]
+        },
+        // JS linter
         // It's important to do this before Babel processes the JS.
         {
-          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          test: /\.(js|mjs|jsx)$/,
           enforce: 'pre',
           use: [
             {
@@ -351,6 +366,7 @@ module.exports = function(webpackEnv) {
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
                 // @remove-on-eject-begin
+
                 ignore: process.env.EXTEND_ESLINT === 'true',
                 baseConfig: (() => {
                   // We allow overriding the config only if the env variable is set
@@ -373,6 +389,7 @@ module.exports = function(webpackEnv) {
                   }
                 })(),
                 useEslintrc: false,
+
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),
@@ -577,6 +594,14 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      // snk5000 fix of sw plugin paths in win
+      new CleanWebpackPlugin(),
+      new CopyPlugin([
+        { from: paths.appPublic },
+      ],{
+        ignore: paths.appHtml
+      }),
+
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(

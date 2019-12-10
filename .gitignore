@@ -14,3 +14,4 @@ yarn-error.log*
 .npm/
 yarn.lock
 /create-react-app.iml
+/packages/react-scripts/react-scripts.iml

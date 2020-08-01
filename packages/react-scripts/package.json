@@ -1,6 +1,6 @@
 {
   "name": "@snk5000/react-scripts",
-  "version": "3.3.01",
+  "version": "3.3.12",
   "description": "Configuration and scripts for Create React App.",
   "repository": "snk5000/create-react-app",
   "license": "MIT",
@@ -73,6 +73,9 @@
     "style-loader": "1.0.0",
     "terser-webpack-plugin": "2.2.1",
     "ts-pnp": "1.1.5",
+    "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-loader": "^3.5.4",
     "url-loader": "2.3.0",
     "webpack": "4.41.2",
     "webpack-dev-server": "3.9.0",
